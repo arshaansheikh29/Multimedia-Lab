@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#102b20">
+
+    <title>Wildlife Rescue - The Great Escape</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <!-- TOP GAME HUD -->
+    <header class="game-header">
+
+        <div class="brand">
+            <span class="brand-icon">🌿</span>
+            <div>
+                <strong>WILDLIFE RESCUE</strong>
+                <small>THE GREAT ESCAPE</small>
+            </div>
+        </div>
+
+        <div class="hud-item">
+            <span>⭐</span>
+            <div>
+                <small>SCORE</small>
+                <strong id="score">00000</strong>
+            </div>
+        </div>
+
+        <div class="hud-item">
+            <span>❤️</span>
+            <div>
+                <small>LIVES</small>
+                <strong id="lives">3</strong>
+            </div>
+        </div>
+
+        <div class="hud-item">
+            <span>🐾</span>
+            <div>
+                <small>RESCUED</small>
+                <strong id="rescued-count">0 / 5</strong>
+            </div>
+        </div>
+
+        <div class="hud-item">
+            <span>⏱️</span>
+            <div>
+                <small>TIME</small>
+                <strong id="timer">03:00</strong>
+            </div>
+        </div>
+
+        <button id="sound-btn" class="icon-button"
+                aria-label="Toggle sound">♫</button>
+
+        <button id="pause-btn" class="icon-button"
+                aria-label="Pause game">Ⅱ</button>
+
+    </header>
+
+
+    <!-- MAIN GAME STAGE -->
+    <main class="game-stage">
+
+        <!-- MAIN MENU -->
+        <section id="main-menu" class="screen active">
+
+            <div class="menu-card">
+
+                <div class="menu-emblem">🐾</div>
+
+                <p class="eyebrow">AN ADVENTURE TO SAVE NATURE</p>
+
+                <h1>
+                    WILDLIFE
+                    <span>RESCUE</span>
+                </h1>
+
+                <h2>THE GREAT ESCAPE</h2>
+
+                <p class="menu-description">
+                    Explore beautiful wilderness, rescue adorable
+                    animals and protect their natural home.
+                    Your adventure starts here!
+                </p>
+
+                <button id="start-btn" class="primary-button">
+                    START ADVENTURE <span>→</span>
+                </button>
+
+                <div class="menu-info">
+                    <span>🌳 EXPLORE</span>
+                    <span>🐼 RESCUE</span>
+                    <span>💚 PROTECT</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAMEPLAY SCREEN -->
+        <section id="game-screen" class="screen">
+
+            <canvas id="game-canvas"></canvas>
+
+            <!-- MISSION INFORMATION -->
+            <div class="mission-panel">
+                <span>🎯 CURRENT MISSION</span>
+                <strong id="mission-text">
+                    Rescue 5 animals
+                </strong>
+            </div>
+
+            <!-- RESCUE PROGRESS -->
+            <div class="rescue-progress">
+                <div class="progress-heading">
+                    <span>RESCUE PROGRESS</span>
+                    <strong id="progress-text">0%</strong>
+                </div>
+
+                <div class="progress-track">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- MOBILE CONTROLS -->
+            <div class="mobile-controls">
+
+                <button id="up-btn" aria-label="Move up">▲</button>
+
+                <div class="horizontal-controls">
+                    <button id="left-btn" aria-label="Move left">◀</button>
+                    <button id="down-btn" aria-label="Move down">▼</button>
+                    <button id="right-btn" aria-label="Move right">▶</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PAUSE SCREEN -->
+        <section id="pause-screen" class="screen">
+
+            <div class="menu-card compact-card">
+
+                <div class="menu-emblem">⏸️</div>
+
+                <p class="eyebrow">TAKE A SHORT BREAK</p>
+
+                <h2>GAME PAUSED</h2>
+
+                <p class="menu-description">
+                    The animals are waiting for your help!
+                </p>
+
+                <button id="resume-btn" class="primary-button">
+                    RESUME ADVENTURE →
+                </button>
+
+                <button id="pause-restart-btn" class="secondary-button">
+                    RESTART LEVEL
+                </button>
+
+                <button id="pause-menu-btn" class="secondary-button">
+                    MAIN MENU
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEVEL COMPLETED -->
+        <section id="level-complete-screen" class="screen">
+
+            <div class="menu-card compact-card">
+
+                <div class="menu-emblem">🏆</div>
+
+                <p class="eyebrow">MISSION ACCOMPLISHED</p>
+
+                <h2>LEVEL COMPLETED!</h2>
+
+                <p class="menu-description">
+                    Amazing work! You successfully rescued the animals.
+                </p>
+
+                <div class="results-panel">
+
+                    <div>
+                        <small>FINAL SCORE</small>
+                        <strong id="level-score">0</strong>
+                    </div>
+
+                    <div>
+                        <small>ANIMALS RESCUED</small>
+                        <strong id="level-rescued">0</strong>
+                    </div>
+
+                </div>
+
+                <button id="next-level-btn" class="primary-button">
+                    NEXT LEVEL →
+                </button>
+
+                <button id="level-menu-btn" class="secondary-button">
+                    MAIN MENU
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAME OVER -->
+        <section id="game-over-screen" class="screen">
+
+            <div class="menu-card compact-card">
+
+                <div class="menu-emblem">🐾</div>
+
+                <p class="eyebrow">THE WILDERNESS NEEDS YOU</p>
+
+                <h2>GAME OVER</h2>
+
+                <p class="menu-description">
+                    Your rescue mission has ended.
+                    Ready to try again?
+                </p>
+
+                <div class="results-panel">
+
+                    <div>
+                        <small>FINAL SCORE</small>
+                        <strong id="final-score">0</strong>
+                    </div>
+
+                    <div>
+                        <small>ANIMALS RESCUED</small>
+                        <strong id="final-rescued">0</strong>
+                    </div>
+
+                </div>
+
+                <button id="restart-btn" class="primary-button">
+                    PLAY AGAIN →
+                </button>
+
+                <button id="gameover-menu-btn" class="secondary-button">
+                    MAIN MENU
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- BOTTOM INFORMATION BAR -->
+    <footer class="game-footer">
+
+        <div class="footer-tips">
+            <span>🐼 Rescue animals</span>
+            <span>🧺 Collect supplies</span>
+            <span>⚠️ Avoid hazards</span>
+            <span>🌿 Protect wildlife</span>
+        </div>
+
+        <span class="footer-credit">
+            SAVE WILDLIFE · SAVE OUR PLANET
+        </span>
+
+    </footer>
+
+</div>
+
+<p class="page-caption">
+    AN INTERACTIVE WILDLIFE ADVENTURE
+</p>
+
+<script src="script.js"></script>
+
+</body>
+</html>
